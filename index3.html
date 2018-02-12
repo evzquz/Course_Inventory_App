@@ -21,13 +21,19 @@
 </style>
   
 <script>
+var redirect = function(){
+	document.location.href="home.html";
+}
+
+
+
 </script>
 </head>
 
 <body>
 <h1>Course Inventory App</h1>
 <h3 class="form-align"><u>Start</u></h3>
-<form class="form-align space1" name="myForm" action="javascript:alert('OK');" onsubmit="validateForm()" method="post">
+<form class="form-align space1" name="myForm"  action="javascript:alert('OK');" onsubmit="validateForm()" method="post">
   
 <select>
   <option value="new">Add New Course</option>
@@ -35,7 +41,7 @@
 
 </select>
 
-<input type="submit" value="Submit">
+<input type="submit" value="Submit" onclick="redirect()">
 
 </form>
 
