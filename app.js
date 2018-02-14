@@ -1,4 +1,5 @@
 var express = require('express');
+ var jade = require('jade');
 var app = express();
 var bodyParser = require('body-parser');
 var path = require('path');
@@ -16,6 +17,13 @@ if (err) console.log("error1");
 console.log("successful connection!");
 });
 
+
+
+app.set('views', __dirname + '/views'); // general config
+app.set('view engine', 'jade');
+app.set('view options', {
+  layout: false
+});
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -70,9 +78,20 @@ app.post('/data', function(req, res){
 
 		var userInp = req.body.course_num;
 		var sql1 = 'SELECT * FROM COOURSE WHERE course_num = ?';
+
 		con.query(sql1, [userInp], function (err, result) {
 		  if (err) throw err;
-		  console.log(result);
+		
+
+		for (var i in result) {
+      console.log(result[i]);
+  }
+
+		var data = { result: result };
+		console.log(data);
+		res.render('template1', {result: result});
+
+
 
 		});
 	
@@ -100,7 +119,6 @@ app.post('/data', function(req, res){
 app.listen(3012, function(){
 	console.log('Node server running @ http://localhost:3012')
 });
-
 
 
 
